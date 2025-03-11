@@ -2,7 +2,6 @@ import {
     Box,
     Container,
     Typography,
-    Grid,
     Card,
     CardContent,
     CardMedia,
@@ -11,6 +10,7 @@ import {
     Chip,
     Stack,
 } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { GitHub as GitHubIcon, Launch as LaunchIcon } from '@mui/icons-material';
 import { Navbar } from '../components/Navbar';
 
@@ -69,7 +69,9 @@ export const ProjectsPage = () => {
                         container 
                         spacing={{ xs: 2, sm: 3, md: 4 }}
                         sx={{
-                            px: { xs: 2, sm: 0 }
+                            px: { xs: 2, sm: 0 },
+                            width: '100%',
+                            margin: 0
                         }}
                     >
                         {projects.map((project, index) => (
@@ -80,12 +82,14 @@ export const ProjectsPage = () => {
                                 md={4} 
                                 key={index}
                                 sx={{
-                                    display: 'flex'
+                                    display: 'flex',
+                                    padding: theme => theme.spacing(1)
                                 }}
                             >
                                 <Card
                                     sx={{
                                         width: '100%',
+                                        height: '100%',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         transition: 'transform 0.2s ease-in-out',
@@ -94,6 +98,7 @@ export const ProjectsPage = () => {
                                         },
                                         boxShadow: 3,
                                         borderRadius: 2,
+                                        overflow: 'hidden'
                                     }}
                                 >
                                     <CardMedia
