@@ -40,7 +40,8 @@ export const HomePage = () => {
                         <Box 
                             sx={{ 
                                 flex: 1,
-                                textAlign: { xs: 'center', md: 'left' }
+                                textAlign: { xs: 'center', md: 'left' },
+                                width: '100%'
                             }}
                         >
                             <Typography
@@ -77,20 +78,22 @@ export const HomePage = () => {
                                 Passionate about clean code and modern web technologies.
                             </Typography>
                             <Stack
-                                direction="row"
+                                direction={{ xs: 'column', sm: 'row' }}
                                 spacing={2}
                                 sx={{
-                                    justifyContent: { xs: 'center', md: 'flex-start' },
                                     mb: 4,
+                                    width: '100%'
                                 }}
                             >
                                 <Button
                                     variant="contained"
                                     size="large"
+                                    fullWidth
                                     onClick={() => navigate('/projects')}
                                     sx={{
                                         backgroundColor: '#3498db',
                                         color: '#fff',
+                                        py: 1.5,
                                         '&:hover': {
                                             backgroundColor: '#2980b9',
                                         },
@@ -101,10 +104,12 @@ export const HomePage = () => {
                                 <Button
                                     variant="outlined"
                                     size="large"
+                                    fullWidth
                                     onClick={() => navigate('/contact')}
                                     sx={{
                                         borderColor: '#3498db',
                                         color: '#3498db',
+                                        py: 1.5,
                                         '&:hover': {
                                             borderColor: '#2980b9',
                                             backgroundColor: 'rgba(52, 152, 219, 0.1)',
@@ -167,11 +172,12 @@ export const HomePage = () => {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
+                                width: '100%'
                             }}
                         >
                             <Box
                                 component="img"
-                                src="https://cdni.iconscout.com/illustration/premium/thumb/web-development-3454633-2918522.png"
+                                src="https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_1280.png"
                                 alt="Developer Illustration"
                                 sx={{
                                     width: '100%',
