@@ -65,12 +65,27 @@ export const ProjectsPage = () => {
                     >
                         My Projects
                     </Typography>
-                    <Grid container spacing={4}>
+                    <Grid 
+                        container 
+                        spacing={{ xs: 2, sm: 3, md: 4 }}
+                        sx={{
+                            px: { xs: 2, sm: 0 }
+                        }}
+                    >
                         {projects.map((project, index) => (
-                            <Grid item xs={12} sm={6} md={4} key={index}>
+                            <Grid 
+                                item 
+                                xs={12} 
+                                sm={6} 
+                                md={4} 
+                                key={index}
+                                sx={{
+                                    display: 'flex'
+                                }}
+                            >
                                 <Card
                                     sx={{
-                                        height: '100%',
+                                        width: '100%',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         transition: 'transform 0.2s ease-in-out',
@@ -128,7 +143,14 @@ export const ProjectsPage = () => {
                                             ))}
                                         </Stack>
                                     </CardContent>
-                                    <CardActions sx={{ p: 2, pt: 0 }}>
+                                    <CardActions 
+                                        sx={{ 
+                                            p: 2, 
+                                            pt: 0,
+                                            gap: 1,
+                                            flexDirection: { xs: 'column', sm: 'row' }
+                                        }}
+                                    >
                                         <Button
                                             size="small"
                                             variant="contained"
@@ -137,7 +159,6 @@ export const ProjectsPage = () => {
                                             href={project.liveDemo}
                                             target="_blank"
                                             sx={{
-                                                mr: 1,
                                                 bgcolor: '#3498db',
                                                 '&:hover': {
                                                     bgcolor: '#2980b9',
