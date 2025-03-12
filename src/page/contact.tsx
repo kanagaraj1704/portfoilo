@@ -1,11 +1,66 @@
+/**
+ * Contact Component
+ * 
+ * A contact form page that allows visitors to send messages.
+ * Features form validation, responsive design, and visual feedback.
+ * 
+ * Features:
+ * - Form validation with error messages
+ * - Responsive layout
+ * - Visual feedback on form submission
+ * - Accessible form controls
+ * - Contact information display
+ */
+
 import { Navbar } from '../components/Navbar';
+import { useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Form data structure
+interface FormData {
+    name: string;
+    email: string;
+    message: string;
+}
+
+// Initial form state
+const initialFormData: FormData = {
+    name: '',
+    email: '',
+    message: ''
+};
+
 export const ContactPage = () => {
-    const handleSubmit = (e: React.FormEvent) => {
+    // Form state management
+    const [formData, setFormData] = useState<FormData>(initialFormData);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+    // Handle form input changes
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev: FormData) => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
+        setIsSubmitting(true);
+
+        try {
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            setSubmitStatus('success');
+            setFormData(initialFormData);
+        } catch (error) {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -28,8 +83,11 @@ export const ContactPage = () => {
                                                         type="text"
                                                         className="form-control"
                                                         id="name"
-                                                        placeholder="Your Name"
+                                                        name="name"
+                                                        value={formData.name}
+                                                        onChange={handleChange}
                                                         required
+                                                        aria-describedby="nameHelp"
                                                     />
                                                 </div>
                                             </div>
@@ -40,8 +98,11 @@ export const ContactPage = () => {
                                                         type="email"
                                                         className="form-control"
                                                         id="email"
-                                                        placeholder="Your Email"
+                                                        name="email"
+                                                        value={formData.email}
+                                                        onChange={handleChange}
                                                         required
+                                                        aria-describedby="emailHelp"
                                                     />
                                                 </div>
                                             </div>
@@ -63,15 +124,22 @@ export const ContactPage = () => {
                                                     <textarea
                                                         className="form-control"
                                                         id="message"
+                                                        name="message"
                                                         rows={6}
-                                                        placeholder="Your Message"
+                                                        value={formData.message}
+                                                        onChange={handleChange}
                                                         required
+                                                        aria-describedby="messageHelp"
                                                     ></textarea>
                                                 </div>
                                             </div>
                                             <div className="col-12">
-                                                <button type="submit" className="btn btn-primary px-4 py-2">
-                                                    Send Message
+                                                <button
+                                                    type="submit"
+                                                    className="btn btn-primary px-4 py-2"
+                                                    disabled={isSubmitting}
+                                                >
+                                                    {isSubmitting ? 'Sending...' : 'Send Message'}
                                                 </button>
                                             </div>
                                         </div>
