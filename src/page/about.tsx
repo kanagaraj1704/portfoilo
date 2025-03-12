@@ -1,174 +1,133 @@
-import { Box, Container, Typography, Grid, Paper, LinearProgress } from '@mui/material';
 import { Navbar } from '../components/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const skills = [
-    { name: 'React.js', level: 90 },
-    { name: 'JavaScript/TypeScript', level: 85 },
-    { name: 'HTML/CSS', level: 88 },
+    { name: 'React', level: 90 },
+    { name: 'JavaScript', level: 85 },
+    { name: 'TypeScript', level: 80 },
     { name: 'Node.js', level: 75 },
-    { name: 'Material-UI', level: 85 },
-    { name: 'Redux', level: 80 },
+    { name: 'HTML/CSS', level: 85 },
+    { name: 'Bootstrap', level: 80 },
 ];
 
 const experiences = [
     {
-        role: 'Frontend Developer',
+        title: 'Senior React Developer',
         company: 'Tech Solutions Inc.',
         period: '2022 - Present',
-        description: 'Developing and maintaining responsive web applications using React.js and modern frontend technologies.'
+        description: 'Led development of enterprise web applications using React and TypeScript. Implemented CI/CD pipelines and mentored junior developers.',
     },
     {
-        role: 'Junior Web Developer',
-        company: 'Digital Innovations',
-        period: '2021 - 2022',
-        description: 'Started career as a web developer, working on various client projects and learning modern web development practices.'
-    }
+        title: 'Frontend Developer',
+        company: 'Digital Innovations Ltd.',
+        period: '2020 - 2022',
+        description: 'Developed responsive web applications using React and Redux. Collaborated with UX designers to implement pixel-perfect designs.',
+    },
+    {
+        title: 'Junior Web Developer',
+        company: 'StartUp Hub',
+        period: '2019 - 2020',
+        description: 'Built and maintained client websites using React and Bootstrap. Worked in an agile environment with daily stand-ups and sprint planning.',
+    },
 ];
 
 export const AboutPage = () => {
     return (
         <>
             <Navbar />
-            <Box
-                sx={{
-                    background: '#ecf0f1',
-                    minHeight: '100vh',
-                    pt: { xs: 10, md: 12 },
-                    pb: 6,
-                }}
-            >
-                <Container maxWidth="lg">
-                    <Grid container spacing={4}>
-                        {/* About Me Section */}
-                        <Grid item xs={12}>
-                            <Typography
-                                variant="h3"
-                                sx={{
-                                    color: '#2c3e50',
-                                    mb: 4,
-                                    fontWeight: 'bold',
-                                    textAlign: 'center'
-                                }}
-                            >
-                                About Me
-                            </Typography>
-                            <Paper 
-                                elevation={0}
-                                sx={{ 
-                                    p: 4, 
-                                    mb: 4, 
-                                    backgroundColor: 'white',
-                                    borderRadius: 2
-                                }}
-                            >
-                                <Typography variant="body1" sx={{ color: '#7f8c8d', lineHeight: 1.8 }}>
-                                    I am a passionate React Developer with 2 years of experience in building modern web applications. 
-                                    My journey in web development started with a strong foundation in HTML, CSS, and JavaScript, 
-                                    and has evolved into expertise in React.js and its ecosystem. I love creating responsive, 
-                                    user-friendly interfaces and solving complex problems through clean, efficient code.
-                                </Typography>
-                            </Paper>
-                        </Grid>
+            <div className="bg-light min-vh-100 py-5">
+                <div className="container py-4">
+                    <h2 className="text-center mb-5 fw-bold text-dark">About Me</h2>
+                    <div className="row g-4">
+                        {/* Profile Section */}
+                        <div className="col-12 mb-4">
+                            <div className="card shadow-sm border-0 rounded-3">
+                                <div className="card-body p-4">
+                                    <h3 className="card-title mb-4">Profile</h3>
+                                    <p className="lead text-muted">
+                                        Passionate React developer with 3+ years of experience in building modern web applications.
+                                        Specialized in creating responsive, user-friendly interfaces using React, TypeScript, and modern frontend technologies.
+                                        Strong advocate for clean code and best practices in web development.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Skills Section */}
-                        <Grid item xs={12} md={6}>
-                            <Typography
-                                variant="h4"
-                                sx={{
-                                    color: '#2c3e50',
-                                    mb: 3,
-                                    fontWeight: 'bold'
-                                }}
-                            >
-                                Skills
-                            </Typography>
-                            <Paper 
-                                elevation={0}
-                                sx={{ 
-                                    p: 3,
-                                    backgroundColor: 'white',
-                                    borderRadius: 2
-                                }}
-                            >
-                                {skills.map((skill, index) => (
-                                    <Box key={index} sx={{ mb: 2 }}>
-                                        <Typography variant="subtitle1" sx={{ color: '#2c3e50', mb: 1 }}>
-                                            {skill.name}
-                                        </Typography>
-                                        <LinearProgress
-                                            variant="determinate"
-                                            value={skill.level}
-                                            sx={{
-                                                height: 8,
-                                                borderRadius: 4,
-                                                backgroundColor: '#ecf0f1',
-                                                '& .MuiLinearProgress-bar': {
-                                                    backgroundColor: '#3498db',
-                                                    borderRadius: 4,
-                                                }
-                                            }}
-                                        />
-                                    </Box>
-                                ))}
-                            </Paper>
-                        </Grid>
+                        <div className="col-12 col-lg-6 mb-4">
+                            <div className="card shadow-sm border-0 rounded-3 h-100">
+                                <div className="card-body p-4">
+                                    <h3 className="card-title mb-4">Skills</h3>
+                                    <div className="d-flex flex-column gap-4">
+                                        {skills.map((skill, index) => (
+                                            <div key={index}>
+                                                <div className="d-flex justify-content-between mb-1">
+                                                    <span className="fw-medium">{skill.name}</span>
+                                                    <span className="text-muted">{skill.level}%</span>
+                                                </div>
+                                                <div className="progress" style={{ height: '8px' }}>
+                                                    <div
+                                                        className="progress-bar bg-primary"
+                                                        role="progressbar"
+                                                        style={{ width: `${skill.level}%` }}
+                                                        aria-valuenow={skill.level}
+                                                        aria-valuemin={0}
+                                                        aria-valuemax={100}
+                                                    ></div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Experience Section */}
-                        <Grid item xs={12} md={6}>
-                            <Typography
-                                variant="h4"
-                                sx={{
-                                    color: '#2c3e50',
-                                    mb: 3,
-                                    fontWeight: 'bold'
-                                }}
-                            >
-                                Experience
-                            </Typography>
-                            <Paper 
-                                elevation={0}
-                                sx={{ 
-                                    p: 3,
-                                    backgroundColor: 'white',
-                                    borderRadius: 2
-                                }}
-                            >
-                                {experiences.map((exp, index) => (
-                                    <Box 
-                                        key={index} 
-                                        sx={{ 
-                                            mb: 3,
-                                            '&:last-child': { mb: 0 }
-                                        }}
-                                    >
-                                        <Typography 
-                                            variant="h6" 
-                                            sx={{ 
-                                                color: '#2c3e50',
-                                                fontWeight: 'bold'
-                                            }}
-                                        >
-                                            {exp.role}
-                                        </Typography>
-                                        <Typography 
-                                            variant="subtitle1" 
-                                            sx={{ 
-                                                color: '#3498db',
-                                                mb: 1
-                                            }}
-                                        >
-                                            {exp.company} | {exp.period}
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ color: '#7f8c8d' }}>
-                                            {exp.description}
-                                        </Typography>
-                                    </Box>
-                                ))}
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
+                        <div className="col-12 col-lg-6 mb-4">
+                            <div className="card shadow-sm border-0 rounded-3 h-100">
+                                <div className="card-body p-4">
+                                    <h3 className="card-title mb-4">Experience</h3>
+                                    <div className="d-flex flex-column gap-4">
+                                        {experiences.map((exp, index) => (
+                                            <div key={index} className="experience-item">
+                                                <h5 className="fw-bold mb-1">{exp.title}</h5>
+                                                <div className="d-flex justify-content-between mb-2">
+                                                    <span className="text-primary">{exp.company}</span>
+                                                    <span className="text-muted">{exp.period}</span>
+                                                </div>
+                                                <p className="text-muted mb-0">{exp.description}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                {`
+                    .card {
+                        transition: transform 0.2s ease-in-out;
+                    }
+                    .card:hover {
+                        transform: translateY(-5px);
+                    }
+                    .progress {
+                        background-color: rgba(13, 110, 253, 0.1);
+                        border-radius: 10px;
+                    }
+                    .progress-bar {
+                        border-radius: 10px;
+                        transition: width 1s ease-in-out;
+                    }
+                    .experience-item:not(:last-child) {
+                        border-bottom: 1px solid rgba(0,0,0,0.1);
+                        padding-bottom: 1.5rem;
+                    }
+                `}
+            </style>
         </>
     );
 }; 

@@ -1,206 +1,108 @@
-import {
-    Box,
-    Button,
-    Container,
-    Typography,
-    Stack,
-    IconButton,
-} from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import EmailIcon from '@mui/icons-material/Email';
-import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const HomePage = () => {     
+export const HomePage = () => {
     const navigate = useNavigate();
 
     return (
         <>
             <Navbar />
-            <Box
-                sx={{
-                    background: '#ecf0f1',
-                    minHeight: '100vh',
-                    color: '#2c3e50',
-                }}
-            >
-                <Container maxWidth="lg">
-                    <Box
-                        sx={{
-                            pt: { xs: 15, md: 25 },
-                            pb: { xs: 10, md: 20 },
-                            display: 'flex',
-                            flexDirection: { xs: 'column', md: 'row' },
-                            alignItems: 'center',
-                            gap: 4,
-                        }}
-                    >
-                        {/* Hero Content */}
-                        <Box 
-                            sx={{ 
-                                flex: 1,
-                                textAlign: { xs: 'center', md: 'left' },
-                                width: '100%'
-                            }}
-                        >
-                            <Typography
-                                variant="h2"
-                                sx={{
-                                    fontWeight: 'bold',
-                                    mb: 2,
-                                    fontSize: { xs: '2.5rem', md: '3.5rem' },
-                                    color: '#2c3e50',
-                                }}
-                            >
+            <div className="bg-light min-vh-100">
+                <div className="container">
+                    <div className="row min-vh-100 align-items-center py-5">
+                        <div className="col-12 col-md-6 text-center text-md-start mb-5 mb-md-0">
+                            <h1 className="display-4 fw-bold mb-4 text-dark">
                                 React Developer
-                            </Typography>
-                            <Typography
-                                variant="h5"
-                                sx={{
-                                    color: '#3498db',
-                                    mb: 3,
-                                    fontWeight: 500,
-                                }}
-                            >
+                            </h1>
+                            <h2 className="h4 text-primary mb-4">
                                 Turning Ideas into Reality with React
-                            </Typography>
-                            <Typography
-                                variant="body1"
-                                sx={{
-                                    mb: 4,
-                                    fontSize: '1.1rem',
-                                    color: '#7f8c8d',
-                                }}
-                            >
+                            </h2>
+                            <p className="lead text-muted mb-5">
                                 With 2 years of experience in React development, I specialize in
                                 building responsive, performant, and user-friendly web applications.
                                 Passionate about clean code and modern web technologies.
-                            </Typography>
-                            <Stack
-                                direction={{ xs: 'column', sm: 'row' }}
-                                spacing={2}
-                                sx={{
-                                    mb: 4,
-                                    width: '100%'
-                                }}
-                            >
-                                <Button
-                                    variant="contained"
-                                    size="large"
-                                    fullWidth
+                            </p>
+                            <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-md-start mb-5">
+                                <button
+                                    className="btn btn-primary px-4 py-2"
                                     onClick={() => navigate('/projects')}
-                                    sx={{
-                                        backgroundColor: '#3498db',
-                                        color: '#fff',
-                                        py: 1.5,
-                                        '&:hover': {
-                                            backgroundColor: '#2980b9',
-                                        },
-                                    }}
                                 >
                                     View Projects
-                                </Button>
-                                <Button
-                                    variant="outlined"
-                                    size="large"
-                                    fullWidth
+                                </button>
+                                <button
+                                    className="btn btn-outline-primary px-4 py-2"
                                     onClick={() => navigate('/contact')}
-                                    sx={{
-                                        borderColor: '#3498db',
-                                        color: '#3498db',
-                                        py: 1.5,
-                                        '&:hover': {
-                                            borderColor: '#2980b9',
-                                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                                        },
-                                    }}
                                 >
                                     Contact Me
-                                </Button>
-                            </Stack>
-                            <Stack
-                                direction="row"
-                                spacing={2}
-                                sx={{
-                                    justifyContent: { xs: 'center', md: 'flex-start' },
-                                }}
-                            >
-                                <IconButton
-                                    aria-label="github"
-                                    sx={{ 
-                                        color: '#2c3e50',
-                                        '&:hover': {
-                                            color: '#3498db',
-                                        }
-                                    }}
-                                    onClick={() => window.open('https://github.com/yourusername')}
+                                </button>
+                            </div>
+                            <div className="d-flex gap-3 justify-content-center justify-content-md-start">
+                                <a
+                                    href="https://github.com/yourusername"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-dark social-icon"
                                 >
-                                    <GitHubIcon />
-                                </IconButton>
-                                <IconButton
-                                    aria-label="linkedin"
-                                    sx={{ 
-                                        color: '#2c3e50',
-                                        '&:hover': {
-                                            color: '#3498db',
-                                        }
-                                    }}
-                                    onClick={() => window.open('https://linkedin.com/in/yourusername')}
+                                    <FaGithub size={24} />
+                                </a>
+                                <a
+                                    href="https://linkedin.com/in/yourusername"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-dark social-icon"
                                 >
-                                    <LinkedInIcon />
-                                </IconButton>
-                                <IconButton
-                                    aria-label="email"
-                                    sx={{ 
-                                        color: '#2c3e50',
-                                        '&:hover': {
-                                            color: '#3498db',
-                                        }
-                                    }}
-                                    onClick={() => window.location.href = 'mailto:your.email@example.com'}
+                                    <FaLinkedin size={24} />
+                                </a>
+                                <a
+                                    href="mailto:your.email@example.com"
+                                    className="text-dark social-icon"
                                 >
-                                    <EmailIcon />
-                                </IconButton>
-                            </Stack>
-                        </Box>
-
-                        {/* Hero Image */}
-                        <Box
-                            sx={{
-                                flex: 1,
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                width: '100%'
-                            }}
-                        >
-                            <Box
-                                component="img"
+                                    <FaEnvelope size={24} />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="col-12 col-md-6 d-flex justify-content-center">
+                            <img
                                 src="https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_1280.png"
                                 alt="Developer Illustration"
-                                sx={{
-                                    width: '100%',
-                                    maxWidth: '500px',
-                                    height: 'auto',
-                                    animation: 'float 3s ease-in-out infinite',
-                                    '@keyframes float': {
-                                        '0%': {
-                                            transform: 'translateY(0px)',
-                                        },
-                                        '50%': {
-                                            transform: 'translateY(-20px)',
-                                        },
-                                        '100%': {
-                                            transform: 'translateY(0px)',
-                                        },
-                                    },
-                                }}
+                                className="img-fluid developer-image"
+                                style={{ maxWidth: '500px' }}
                             />
-                        </Box>
-                    </Box>
-                </Container>
-            </Box>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                {`
+                    .social-icon {
+                        transition: transform 0.2s ease-in-out;
+                    }
+                    .social-icon:hover {
+                        transform: translateY(-3px);
+                        color: #0d6efd !important;
+                    }
+                    .developer-image {
+                        animation: float 3s ease-in-out infinite;
+                    }
+                    @keyframes float {
+                        0% {
+                            transform: translateY(0px);
+                        }
+                        50% {
+                            transform: translateY(-20px);
+                        }
+                        100% {
+                            transform: translateY(0px);
+                        }
+                    }
+                    .btn {
+                        font-weight: 500;
+                    }
+                `}
+            </style>
         </>
     );
 }; 
