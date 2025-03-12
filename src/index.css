@@ -10,7 +10,7 @@
   --text-color: white;
 }
 
-/* Global styles to prevent horizontal scrolling */
+/* Global styles to prevent horizontal scrolling and layout shifts */
 html, body {
   margin: 0;
   padding: 0;
@@ -19,6 +19,31 @@ html, body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+}
+
+/* Always show scrollbar to prevent layout shifts */
+html {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Webkit scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /* Container styles */
