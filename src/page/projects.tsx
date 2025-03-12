@@ -1,18 +1,6 @@
-import {
-    Box,
-    Container,
-    Typography,
-    Card,
-    CardContent,
-    CardMedia,
-    CardActions,
-    Button,
-    Chip,
-    Stack,
-} from '@mui/material';
-import Grid from '@mui/material/Grid';
-import { GitHub as GitHubIcon, Launch as LaunchIcon } from '@mui/icons-material';
 import { Navbar } from '../components/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const projects = [
     {
@@ -45,158 +33,78 @@ export const ProjectsPage = () => {
     return (
         <>
             <Navbar />
-            <Box
-                sx={{
-                    background: '#ecf0f1',
-                    minHeight: '100vh',
-                    pt: { xs: 10, md: 12 },
-                    pb: 8,
-                }}
-            >
-                <Container maxWidth="lg">
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            textAlign: 'center',
-                            mb: 6,
-                            color: '#2c3e50',
-                            fontWeight: 'bold',
-                        }}
-                    >
+            <div className="bg-light min-vh-100 py-5">
+                <div className="container py-4">
+                    <h2 className="text-center mb-5 fw-bold text-dark">
                         My Projects
-                    </Typography>
-                    <Grid 
-                        container 
-                        spacing={{ xs: 2, sm: 3, md: 4 }}
-                        sx={{
-                            px: { xs: 2, sm: 0 },
-                            width: '100%',
-                            margin: 0
-                        }}
-                    >
+                    </h2>
+                    <div className="row g-4">
                         {projects.map((project, index) => (
-                            <Grid 
-                                item 
-                                xs={12} 
-                                sm={6} 
-                                md={4} 
-                                key={index}
-                                sx={{
-                                    display: 'flex',
-                                    padding: theme => theme.spacing(1)
-                                }}
-                            >
-                                <Card
-                                    sx={{
-                                        width: '100%',
-                                        height: '100%',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        transition: 'transform 0.2s ease-in-out',
-                                        '&:hover': {
-                                            transform: 'translateY(-8px)',
-                                        },
-                                        boxShadow: 3,
-                                        borderRadius: 2,
-                                        overflow: 'hidden'
-                                    }}
-                                >
-                                    <CardMedia
-                                        component="img"
-                                        height="200"
-                                        image={project.image}
+                            <div className="col-12 col-md-6 col-lg-4" key={index}>
+                                <div className="card h-100 shadow-sm border-0 rounded-3 project-card">
+                                    <img
+                                        src={project.image}
+                                        className="card-img-top"
                                         alt={project.title}
-                                        sx={{
-                                            objectFit: 'cover',
-                                            bgcolor: '#f5f6fa',
-                                        }}
+                                        style={{ height: '200px', objectFit: 'cover' }}
                                     />
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography
-                                            gutterBottom
-                                            variant="h5"
-                                            component="h2"
-                                            sx={{ 
-                                                color: '#2c3e50',
-                                                fontWeight: 'bold',
-                                            }}
-                                        >
-                                            {project.title}
-                                        </Typography>
-                                        <Typography
-                                            sx={{
-                                                mb: 2,
-                                                color: '#7f8c8d',
-                                            }}
-                                        >
-                                            {project.description}
-                                        </Typography>
-                                        <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+                                    <div className="card-body d-flex flex-column">
+                                        <h5 className="card-title fw-bold mb-3">{project.title}</h5>
+                                        <p className="card-text text-muted mb-3">{project.description}</p>
+                                        <div className="mb-3">
                                             {project.technologies.map((tech, techIndex) => (
-                                                <Chip
+                                                <span
                                                     key={techIndex}
-                                                    label={tech}
-                                                    size="small"
-                                                    sx={{
-                                                        bgcolor: '#3498db',
-                                                        color: 'white',
-                                                        '&:hover': {
-                                                            bgcolor: '#2980b9',
-                                                        },
-                                                    }}
-                                                />
+                                                    className="badge bg-primary me-2 mb-2"
+                                                >
+                                                    {tech}
+                                                </span>
                                             ))}
-                                        </Stack>
-                                    </CardContent>
-                                    <CardActions 
-                                        sx={{ 
-                                            p: 2, 
-                                            pt: 0,
-                                            gap: 1,
-                                            flexDirection: { xs: 'column', sm: 'row' }
-                                        }}
-                                    >
-                                        <Button
-                                            size="small"
-                                            variant="contained"
-                                            startIcon={<LaunchIcon />}
-                                            fullWidth
-                                            href={project.liveDemo}
-                                            target="_blank"
-                                            sx={{
-                                                bgcolor: '#3498db',
-                                                '&:hover': {
-                                                    bgcolor: '#2980b9',
-                                                },
-                                            }}
-                                        >
-                                            Live Demo
-                                        </Button>
-                                        <Button
-                                            size="small"
-                                            variant="outlined"
-                                            startIcon={<GitHubIcon />}
-                                            fullWidth
-                                            href={project.sourceCode}
-                                            target="_blank"
-                                            sx={{
-                                                color: '#3498db',
-                                                borderColor: '#3498db',
-                                                '&:hover': {
-                                                    borderColor: '#2980b9',
-                                                    bgcolor: 'rgba(52, 152, 219, 0.1)',
-                                                },
-                                            }}
-                                        >
-                                            View Code
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
+                                        </div>
+                                        <div className="mt-auto d-flex flex-column flex-sm-row gap-2">
+                                            <a
+                                                href={project.liveDemo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-primary d-flex align-items-center justify-content-center gap-2"
+                                            >
+                                                <FaExternalLinkAlt /> Live Demo
+                                            </a>
+                                            <a
+                                                href={project.sourceCode}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2"
+                                            >
+                                                <FaGithub /> View Code
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
-                    </Grid>
-                </Container>
-            </Box>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                {`
+                    .project-card {
+                        transition: transform 0.2s ease-in-out;
+                    }
+                    .project-card:hover {
+                        transform: translateY(-8px);
+                    }
+                    .btn {
+                        padding: 0.5rem 1rem;
+                        font-weight: 500;
+                    }
+                    .badge {
+                        font-weight: 500;
+                        padding: 0.5em 0.8em;
+                    }
+                `}
+            </style>
         </>
     );
 }; 
