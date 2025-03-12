@@ -1,100 +1,75 @@
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import {
-    Box,
-    Button,
-    Container,
-    TextField,
-    Typography,
-    Paper,
-} from '@mui/material';
-
-const validationSchema = Yup.object({
-    email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
-    password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .required('Password is required'),
-});
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/context';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const LoginPage = () => {
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            // Handle login logic here
-            console.log('Form values:', values);
-        },
-    });
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const { login } = useAuth();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        login(username, password);
+        navigate('/');
+    };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <Paper
-                    elevation={3}
-                    sx={{
-                        padding: 4,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        width: '100%',
-                    }}
-                >
-                    <Typography component="h1" variant="h5">
-                        Sign In
-                    </Typography>
-                    <Box
-                        component="form"
-                        onSubmit={formik.handleSubmit}
-                        sx={{ mt: 3, width: '100%' }}
-                    >
-                        <TextField
-                            fullWidth
-                            id="email"
-                            name="email"
-                            label="Email Address"
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.email && Boolean(formik.errors.email)}
-                            helperText={formik.touched.email && formik.errors.email}
-                            margin="normal"
-                        />
-                        <TextField
-                            fullWidth
-                            id="password"
-                            name="password"
-                            label="Password"
-                            type="password"
-                            value={formik.values.password}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.password && Boolean(formik.errors.password)}
-                            helperText={formik.touched.password && formik.errors.password}
-                            margin="normal"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>
-                    </Box>
-                </Paper>
-            </Box>
-        </Container>
+        <div className="bg-light min-vh-100 d-flex align-items-center">
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-12 col-md-6 col-lg-4">
+                        <div className="card shadow-sm border-0 rounded-3">
+                            <div className="card-body p-4">
+                                <h2 className="text-center mb-4 fw-bold">Login</h2>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="mb-3">
+                                        <label htmlFor="username" className="form-label">Username</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label htmlFor="password" className="form-label">Password</label>
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            id="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    <button type="submit" className="btn btn-primary w-100 py-2">
+                                        Login
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                {`
+                    .form-control:focus {
+                        border-color: #0d6efd;
+                        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+                    }
+                    .card {
+                        transition: transform 0.2s ease-in-out;
+                    }
+                    .card:hover {
+                        transform: translateY(-5px);
+                    }
+                `}
+            </style>
+        </div>
     );
 };
