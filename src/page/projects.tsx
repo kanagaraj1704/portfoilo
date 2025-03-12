@@ -114,6 +114,7 @@ export const ProjectsPage = () => {
                                                 rel="noopener noreferrer"
                                                 aria-label={`Live Demo of ${project.title}`}
                                             >
+                                                <FaExternalLinkAlt className="me-2" />
                                                 Live Demo
                                             </a>
                                             <a
@@ -123,6 +124,7 @@ export const ProjectsPage = () => {
                                                 rel="noopener noreferrer"
                                                 aria-label={`View Code of ${project.title}`}
                                             >
+                                                <FaGithub className="me-2" />
                                                 View Code
                                             </a>
                                         </div>

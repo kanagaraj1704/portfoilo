@@ -141,6 +141,18 @@ export const ContactPage = () => {
                                                 >
                                                     {isSubmitting ? 'Sending...' : 'Send Message'}
                                                 </button>
+
+                                                {/* Status Messages */}
+                                                {submitStatus === 'success' && (
+                                                    <div className="alert alert-success mt-3" role="alert">
+                                                        Message sent successfully! We'll get back to you soon.
+                                                    </div>
+                                                )}
+                                                {submitStatus === 'error' && (
+                                                    <div className="alert alert-danger mt-3" role="alert">
+                                                        Failed to send message. Please try again later.
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </form>
